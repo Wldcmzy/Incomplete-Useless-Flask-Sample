@@ -4,6 +4,12 @@
 
 过程比较随意，没用版本控制工具，写好了随便组合一下，这里仅上传我写的一点东西，可以作为以后Flask应用(搬砖)的一点参考。
 
+主要涉及：Flask，基于aiohttp的异步爬虫，少量基于pandas的数据处理，python-pyecharts画图
+
+主要功能：登录，山东省天气可视化，静态漫画网页
+
+（爬漫画的代码不在本项目中，[传送门](https://github.com/Wldcmzy/Mess-Mess/blob/master/Lib_Wrappers/spider_didiaomh.com_async.py)）
+
 ## 残疾功能的介绍
 
 #### 1.登录
@@ -16,6 +22,6 @@
 
 本来打算直接在flask中实现，但发现跑异步有问题报错没有解决，然后曲线救国使用多线程在线程中跑异步又报错了，于是直接用线程开命令行指令跑进程。(人菜瘾大)
 
-#### 3.静态漫画
+#### 3.静态漫画网页
 
 批量生成html代码的搬砖东西，很捞，其他没什么可说的，成品网页应该比我爬过的任何一个网页都好爬# Incomplete-Useless-Flask-Sample
