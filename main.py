@@ -5,7 +5,7 @@ if __name__ == '__main__':
     DEBUG = True
 
     from app import app
-    from process import run_processes_win
+    from process import run_processes_linux, run_processes_win
 
     run_processes_win()
 
