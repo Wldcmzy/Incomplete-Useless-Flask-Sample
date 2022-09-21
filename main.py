@@ -2,7 +2,8 @@ if __name__ == '__main__':
 
     HOST = '0.0.0.0'
     PORT = 26666
-    DEBUG = True
+    DEBUG = False
+    # RELOADER = False
 
     from app import app
     from process import run_processes_linux, run_processes_win
@@ -11,3 +12,4 @@ if __name__ == '__main__':
 
     app.debug = DEBUG
     app.run(HOST, PORT)
+    # app.run(HOST, PORT, use_reloader = RELOADER)

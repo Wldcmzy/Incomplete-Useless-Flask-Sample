@@ -6,9 +6,11 @@ TIMESPAN_SDW = 60 * 5
 
 def run_SDW(cmd):
     path = Path(__file__).parent / "modules" / "SDW" / "process.py"
-    print(f'{cmd} {str(path)}')
-    os.system(f'{cmd} {str(path)}')
-    t = threading.Timer(TIMESPAN_SDW, run_SDW)
+    def _(cmd, path):
+        os.system(f'{cmd} {str(path)}')
+        t = threading.Timer(TIMESPAN_SDW, _, args=[cmd, path])
+        t.start()
+    t = threading.Timer(0, _, args=[cmd, path])
     t.start()
 
 # def run_something():
@@ -21,5 +23,5 @@ def run_processes_win():
 def run_processes_linux():
     run_SDW('python3')
 
-if __name__ == '__main__':
-    run_processes_linux()
+# if __name__ == '__main__':
+#     run_processes_win()
