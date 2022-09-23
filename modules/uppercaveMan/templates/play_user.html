@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+<script type="text/javascript">
+    var playuser_data = {{playuser_data|tojson}}
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+
+    var option;
+
+    option = {
+  title: {
+    text: '官方歌单播放量'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {},
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+      max:400000000
+  },
+  yAxis: {
+    type: 'category',
+    data: playuser_data.title
+
+  },
+  series: [
+    {
+      name: '播放量',
+      type: 'bar',
+      data: playuser_data.value
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+</script>
+
+</body>
+</html>

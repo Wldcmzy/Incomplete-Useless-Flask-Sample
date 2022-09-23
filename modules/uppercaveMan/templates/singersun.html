@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    const colors = ['#FFAE57', '#FF7853', '#EA5151', '#CC3F57', '#9A2555'];
+const bgColor = '#2E2733';
+const itemStyle = {
+  star5: {
+    color: colors[0]
+  },
+  star4: {
+    color: colors[1]
+  },
+  star3: {
+    color: colors[2]
+  },
+  star2: {
+    color: colors[3]
+  }
+};
+const data = [
+  {
+    name: '华语',
+    itemStyle: {
+      color: colors[1]
+    },
+    children: [
+      {
+        name: '华语男歌手',
+        children: [
+          {
+            name: '林俊杰',
+            children: [
+              {
+                name: '浪漫血液'
+              },
+              {
+                name: '那些你很冒险的 梦'
+              },
+              {
+                name: '美人鱼'
+              }
+            ]
+          },
+          {
+            name: '周杰伦',
+            children: [
+              {
+                name: '屋顶'
+              },
+              {
+                name: '默'
+              },
+              {
+                name: '布拉格广场'
+              }
+            ]
+          },
+          {
+            name: '陈奕迅',
+            children: [
+              {
+                name: '孤勇者'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: '华语女歌手',
+        children: [
+          {
+            name: '邓紫棋',
+            children: [
+              {
+                name: '多远都要在一起'
+              },
+              {
+                name: '再见'
+              },
+              {
+                name: '红蔷薇白玫瑰'
+              }
+            ]
+          },
+          {
+            name: '王心凌',
+            children: [
+              {
+                name: '爱你'
+              },
+              {
+                name: '那年夏天宁静的海'
+              },
+              {
+                name: '第一次爱的人'
+              }
+            ]
+          },
+          {
+            name: '王菲',
+            children: [
+              {
+                name: '传奇'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: '华语组合/乐队',
+        children: [
+          {
+            name: '告五人',
+            children: [
+              {
+                name: '给你一瓶魔法药水'
+              }
+            ]
+          },
+          {
+            name: '筷子兄弟',
+            children: [
+              {
+                name: '我一定要得到你'
+              },
+              {
+                name: '小苹果'
+              }
+            ]
+          },
+          {
+            name: '五月天',
+            children: [
+              {
+                name: '私奔到月球'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: '国际',
+    itemStyle: {
+      color: colors[2]
+    },
+    children: [
+      {
+        name: '欧美女歌手',
+        children: [
+          {
+            name: 'Sia',
+            children: [
+              {
+                name: 'Unstoppable'
+              }
+            ]
+          },
+          {
+            name: 'MADILYN',
+            children: [
+              {
+                name: 'This Is What You Came For'
+              },
+              {
+                name: 'Dusk Till Dawn'
+              }
+            ]
+          },
+          {
+            name: 'Jex',
+            children: [
+              {
+                name: 'Where We Started'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: '欧美男歌手',
+        children: [
+          {
+            name: 'Lauv',
+            children: [
+              {
+                name: 'Paris in the Rain'
+              }
+            ]
+          },
+          {
+            name: 'Justin Bieber',
+            children: [
+              {
+                name: 'As Long As You Love Me'
+              },
+              {
+                name: 'STAY'
+              },
+              {
+                name: 'What Do You Mean'
+              }
+            ]
+          },
+          {
+            name: 'Russ',
+            children: [
+              {
+                name: 'When This Was All New'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: '欧美组合/乐队',
+        children: [
+          {
+            name: 'The Chainsmokers',
+            children: [
+              {
+                name: 'Something Just Like This'
+              },
+              {
+                name: 'Yellow vs. Don\'t Let Me Down'
+              },
+              {
+                name: 'Roses X Love Yourself Mashup'
+              }
+            ]
+          },
+          {
+            name: 'AJR',
+            children: [
+              {
+                name: 'Bang!'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: '韩国男歌手',
+        children: [
+          {
+            name: '高宇Slient',
+            children: [
+              {
+                name: '幼稚园杀手-中国加油'
+              },
+              {
+                name: '解药'
+              },
+              {
+                name: '又是一个想你的午夜'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: '韩国女歌手',
+        children: [
+          {
+            name: 'IU',
+            children: [
+              {
+                name: 'Celebrity'
+              }
+            ]
+          },
+          {
+            name: 'ROSÉ',
+            children: [
+              {
+                name: '결국 (Feat. ROSÉ of BLACKPINK)'
+              },
+              {
+                name: 'On The Ground'
+              }
+            ]
+          },
+          {
+            name: 'J.Fla',
+            children: [
+              {
+                name: 'All I Want For Christmas Is You'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: '韩国组合/乐队',
+        children: [
+          {
+            name: 'EXO',
+            children: [
+              {
+                name: 'Baby, Don\'t Cry (人鱼的眼泪)'
+              }
+            ]
+          },
+          {
+            name: '少女时代',
+            children: [
+              {
+                name: '다시 만난 세계 (Into The New World)'
+              },
+              {
+                name:'Gee'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
+for (let j = 0; j < data.length; ++j) {
+  let level1 = data[j].children;
+  for (let i = 0; i < level1.length; ++i) {
+    let block = level1[i].children;
+    let bookScore = [];
+    let bookScoreId;
+    for (let star = 0; star < block.length; ++star) {
+      let style = (function (name) {
+        switch (name) {
+          case '林俊杰':
+            bookScoreId = 0;
+            return itemStyle.star5;
+          case '周杰伦':
+            bookScoreId = 1;
+            return itemStyle.star4;
+          case '陈奕迅':
+            bookScoreId = 2;
+            return itemStyle.star3;
+          case '邓紫棋':
+            bookScoreId = 3;
+            return itemStyle.star2;
+          case '王心凌':
+            bookScoreId = 0;
+            return itemStyle.star5;
+          case '王菲':
+            bookScoreId = 1;
+            return itemStyle.star4;
+          case '告五人':
+            bookScoreId = 3;
+            return itemStyle.star3;
+          case '筷子兄弟':
+            bookScoreId = 3;
+            return itemStyle.star3;
+          case '五月天':
+            bookScoreId = 0;
+            return itemStyle.star2;
+          case 'Sia':
+            bookScoreId = 1;
+            return itemStyle.star5;
+          case 'MADILYN':
+            bookScoreId = 2;
+            return itemStyle.star4;
+          case 'Jex':
+            bookScoreId = 3;
+            return itemStyle.star3;
+          case 'Lauv':
+            bookScoreId = 0;
+            return itemStyle.star5;
+          case 'Justin Bieber':
+            bookScoreId = 1;
+            return itemStyle.star4;
+          case 'Russ':
+            bookScoreId = 2;
+            return itemStyle.star3;
+          case 'The Chainsmokers':
+            bookScoreId = 3;
+            return itemStyle.star2;
+          case 'AJR':
+            bookScoreId = 0;
+            return itemStyle.star2;
+          case '高宇Slient':
+            bookScoreId = 1;
+            return itemStyle.star2;
+          case 'IU':
+            bookScoreId = 2;
+            return itemStyle.star2;
+          case 'ROSÉ':
+            bookScoreId = 3;
+            return itemStyle.star2;
+          case 'J.Fla':
+            bookScoreId = 0;
+            return itemStyle.star2;
+          case 'EXO':
+            bookScoreId = 1;
+            return itemStyle.star2;
+          case '少女时代':
+            bookScoreId = 2;
+            return itemStyle.star2;
+        }
+      })(block[star].name);
+      block[star].label = {
+        color: style.color,
+        downplay: {
+          opacity: 0.5
+        }
+      };
+      if (block[star].children) {
+        style = {
+          opacity: 1,
+          color: style.color
+        };
+        block[star].children.forEach(function (book) {
+          book.value = 1;
+          book.itemStyle = style;
+          book.label = {
+            color: style.color
+          };
+          let value = 1;
+          if (bookScoreId === 0 || bookScoreId === 3) {
+            value = 5;
+          }
+          if (bookScore[bookScoreId]) {
+            bookScore[bookScoreId].value += value;
+          } else {
+            bookScore[bookScoreId] = {
+              color: colors[bookScoreId],
+              value: value
+            };
+          }
+        });
+      }
+    }
+    level1[i].itemStyle = {
+      color: data[j].itemStyle.color
+    };
+  }
+}
+option = {
+  backgroundColor: bgColor,
+  color: colors,
+  series: [
+    {
+      type: 'sunburst',
+      center: ['50%', '48%'],
+      data: data,
+      sort: function (a, b) {
+        if (a.depth === 1) {
+          return b.getValue() - a.getValue();
+        } else {
+          return a.dataIndex - b.dataIndex;
+        }
+      },
+      label: {
+        rotate: 'radial',
+        color: bgColor
+      },
+      itemStyle: {
+        borderColor: bgColor,
+        borderWidth: 4
+      },
+      levels: [
+        {},
+        {
+          r0: 0,
+          r: 40,
+          label: {
+            rotate: 0
+          }
+        },
+        {
+          r0: 40,
+          r: 145
+        },
+        {
+          r0: 145,
+          r: 185,
+          itemStyle: {
+            shadowBlur: 2,
+            shadowColor: colors[2],
+            color: 'transparent'
+          },
+          label: {
+            rotate: 'tangential',
+            fontSize: 10,
+            color: colors[0]
+          }
+        },
+        {
+          r0: 185,
+          r: 195,
+          itemStyle: {
+            shadowBlur: 80,
+            shadowColor: colors[0]
+          },
+          label: {
+            position: 'outside',
+            textShadowBlur: 5,
+            textShadowColor: '#333'
+          },
+          downplay: {
+            label: {
+              opacity: 0.5
+            }
+          }
+        }
+      ]
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

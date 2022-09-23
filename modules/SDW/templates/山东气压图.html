@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/shandong.js"></script>
+
+</head>
+<body>
+    <div id="30e041b49a0844978d2d8a2b35377af5" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_30e041b49a0844978d2d8a2b35377af5 = echarts.init(
+            document.getElementById('30e041b49a0844978d2d8a2b35377af5'), 'white', {renderer: 'canvas'});
+        var option_30e041b49a0844978d2d8a2b35377af5 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "map",
+            "name": "\u5c71\u4e1c\u6c14\u538b\u56fe",
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "mapType": "\u5c71\u4e1c",
+            "data": [
+                {
+                    "name": "\u6d4e\u5357\u5e02",
+                    "value": 1002.0
+                },
+                {
+                    "name": "\u5fb7\u5dde\u5e02",
+                    "value": 1019.0
+                },
+                {
+                    "name": "\u4e1c\u8425\u5e02",
+                    "value": 1019.0
+                },
+                {
+                    "name": "\u4e34\u6c82\u5e02",
+                    "value": 1005.0
+                },
+                {
+                    "name": "\u5a01\u6d77\u5e02",
+                    "value": 1007.0
+                },
+                {
+                    "name": "\u6d4e\u5b81\u5e02",
+                    "value": 1017.0
+                },
+                {
+                    "name": "\u67a3\u5e84\u5e02",
+                    "value": 1011.0
+                },
+                {
+                    "name": "\u6ee8\u5dde\u5e02",
+                    "value": 1019.0
+                },
+                {
+                    "name": "\u6dc4\u535a\u5e02",
+                    "value": 1017.0
+                },
+                {
+                    "name": "\u6cf0\u5b89\u5e02",
+                    "value": 1006.0
+                },
+                {
+                    "name": "\u65e5\u7167\u5e02",
+                    "value": 1011.0
+                },
+                {
+                    "name": "\u6f4d\u574a\u5e02",
+                    "value": 1017.0
+                },
+                {
+                    "name": "\u804a\u57ce\u5e02",
+                    "value": 1018.0
+                },
+                {
+                    "name": "\u83cf\u6cfd\u5e02",
+                    "value": 1016.0
+                },
+                {
+                    "name": "\u70df\u53f0\u5e02",
+                    "value": 1006.0
+                },
+                {
+                    "name": "\u83b1\u829c\u5e02",
+                    "value": 994.0
+                },
+                {
+                    "name": "\u9752\u5c9b\u5e02",
+                    "value": 1009.0
+                }
+            ],
+            "roam": true,
+            "aspectScale": 0.75,
+            "nameProperty": "name",
+            "selectedMode": false,
+            "zoom": 1,
+            "mapValueCalculation": "sum",
+            "showLegendSymbol": true,
+            "emphasis": {}
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u5c71\u4e1c\u6c14\u538b\u56fe"
+            ],
+            "selected": {
+                "\u5c71\u4e1c\u6c14\u538b\u56fe": true
+            },
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": [
+        {
+            "text": "\u5c71\u4e1c\u6c14\u538b\u56fe",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ],
+    "visualMap": {
+        "show": true,
+        "type": "piecewise",
+        "min": 0,
+        "max": 100,
+        "inRange": {
+            "color": [
+                "#50a3ba",
+                "#eac763",
+                "#d94e5d"
+            ]
+        },
+        "calculable": true,
+        "inverse": false,
+        "splitNumber": 5,
+        "orient": "vertical",
+        "showLabel": true,
+        "itemWidth": 20,
+        "itemHeight": 14,
+        "borderWidth": 0,
+        "pieces": [
+            {
+                "min": 994,
+                "max": 999,
+                "label": "994hPa - 999hPa",
+                "color": "#02DF82"
+            },
+            {
+                "min": 999,
+                "max": 1004,
+                "label": "999hPa - 1004hPa",
+                "color": "#7AFEC6"
+            },
+            {
+                "min": 1004,
+                "max": 1009,
+                "label": "1004hPa - 1009hPa",
+                "color": "#FFFF93"
+            },
+            {
+                "min": 1009,
+                "max": 1014,
+                "label": "1009hPa - 1014hPa",
+                "color": "#E1E100"
+            },
+            {
+                "min": 1014,
+                "max": 1019,
+                "label": "1014hPa - 1019hPa",
+                "color": "#CA8EFF"
+            }
+        ]
+    }
+};
+        chart_30e041b49a0844978d2d8a2b35377af5.setOption(option_30e041b49a0844978d2d8a2b35377af5);
+    </script>
+</body>
+</html>

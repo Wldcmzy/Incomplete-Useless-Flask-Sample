@@ -1,0 +1,164 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=pie-parliament-transition
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    const data = {{pie_time_name_data|tojson}}
+
+const defaultPalette = [
+  // '#51689b', '#ce5c5c', '#fbc357', '#8fbf8f', '#659d84', '#fb8e6a', '#c77288', '#786090', '#91c4c5', '#6890ba'
+  '#5470c6',
+  '#91cc75',
+  '#fac858',
+  '#ee6666',
+  '#73c0de',
+  '#3ba272',
+  '#fc8452',
+  '#9a60b4',
+  '#ea7ccc'
+];
+const radius = ['30%', '80%'];
+const pieOption = {
+  series: [
+    {
+      type: 'pie',
+      id: 'distribution',
+      radius: radius,
+      label: {
+        show: true
+      },
+      universalTransition: true,
+      animationDurationUpdate: 1000,
+      data: data
+    }
+  ]
+};
+const parliamentOption = (function () {
+  let sum = data.reduce(function (sum, cur) {
+    return sum + cur.value;
+  }, 0);
+  let angles = [];
+  let startAngle = -Math.PI / 2;
+  let curAngle = startAngle;
+  data.forEach(function (item) {
+    angles.push(curAngle);
+    curAngle += (item.value / sum) * Math.PI * 2;
+  });
+  angles.push(startAngle + Math.PI * 2);
+  function parliamentLayout(startAngle, endAngle, totalAngle, r0, r1, size) {
+    let rowsCount = Math.ceil((r1 - r0) / size);
+    let points = [];
+    let r = r0;
+    for (let i = 0; i < rowsCount; i++) {
+      // Recalculate size
+      let totalRingSeatsNumber = Math.round((totalAngle * r) / size);
+      let newSize = (totalAngle * r) / totalRingSeatsNumber;
+      for (
+        let k = Math.floor((startAngle * r) / newSize) * newSize;
+        k < Math.floor((endAngle * r) / newSize) * newSize - 1e-6;
+        k += newSize
+      ) {
+        let angle = k / r;
+        let x = Math.cos(angle) * r;
+        let y = Math.sin(angle) * r;
+        points.push([x, y]);
+      }
+      r += size;
+    }
+    return points;
+  }
+  return {
+    series: {
+      type: 'custom',
+      id: 'distribution',
+      data: data,
+      coordinateSystem: undefined,
+      universalTransition: true,
+      animationDurationUpdate: 1000,
+      renderItem: function (params, api) {
+        var idx = params.dataIndex;
+        var viewSize = Math.min(api.getWidth(), api.getHeight());
+        var r0 = ((parseFloat(radius[0]) / 100) * viewSize) / 2;
+        var r1 = ((parseFloat(radius[1]) / 100) * viewSize) / 2;
+        var cx = api.getWidth() * 0.5;
+        var cy = api.getHeight() * 0.5;
+        var size = viewSize / 50;
+        var points = parliamentLayout(
+          angles[idx],
+          angles[idx + 1],
+          Math.PI * 2,
+          r0,
+          r1,
+          size + 3
+        );
+        return {
+          type: 'group',
+          children: points.map(function (pt) {
+            return {
+              type: 'circle',
+              autoBatch: true,
+              shape: {
+                cx: cx + pt[0],
+                cy: cy + pt[1],
+                r: size / 2
+              },
+              style: {
+                fill: defaultPalette[idx % defaultPalette.length]
+              }
+            };
+          })
+        };
+      }
+    }
+  };
+})();
+let currentOption = (option = pieOption);
+setInterval(function () {
+  currentOption = currentOption === pieOption ? parliamentOption : pieOption;
+  myChart.setOption(currentOption);
+}, 2000);
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

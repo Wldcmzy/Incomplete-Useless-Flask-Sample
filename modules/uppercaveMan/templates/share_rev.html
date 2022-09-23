@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<!-- 歌单前十分享和收藏 -->
+<script type="text/javascript">
+    var sharerev_data = {{sharerev_data|tojson}}
+var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+
+    var option;
+
+    option = {
+  title: {
+    text: '歌单前十分享和收藏'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {},
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+            max:45000
+
+  },
+  yAxis: {
+    type: 'category',
+    data: sharerev_data.tag
+  },
+  series: [
+    {
+      name: '分享',
+      type: 'bar',
+      data: sharerev_data.share
+
+    },
+    {
+      name: '收藏',
+      type: 'bar',
+      data: sharerev_data.review
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+</script>
+</body>
+</html>

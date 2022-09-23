@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>山东天气图</title>
+    <style>
+        a.right{
+            float: right;
+            margin-right: 200px;
+        }
+        a.left{
+            margin-left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/SDW/temperature" class = 'left'>山东温度图:点此查看详细</a>
+    <a href="/SDW/temperature" class = 'right'>山东湿度图:点此查看详细</a>
+    <br>
+    <iframe src="/SDW/temperature" width="49%", height="500px"></iframe>
+    <iframe src="/SDW/humidity" width="49%", height="500px"></iframe>
+    <a href="/SDW/temperature" class = 'left'>山东气压图:点此查看详细</a>
+    <a href="/SDW/temperature" class = 'right'>山东降水图:点此查看详细</a>
+    <br>
+    <iframe src="/SDW/pressure" width="49%", height="500px"></iframe>
+    <iframe src="/SDW/precipitation" width="49%", height="500px"></iframe>
+</body>
+</html>

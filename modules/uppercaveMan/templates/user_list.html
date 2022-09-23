@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<!-- 歌单标签前十的饼图 -->
+<script type="text/javascript">
+    var userlist_data = {{userlist_data | tojson}}
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+        renderer: 'canvas',
+        useDirtyRect: false
+    });
+    var app = {};
+
+    var option;
+
+    option = {
+        title: {
+            text: "贡献歌单数量用户榜",
+            fontSize: 12,
+            x: 'center',
+            y: 'bottom'
+        },
+        legend: {
+            top: 'top'
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        series: [
+            {
+                name: 'Nightingale Chart',
+                type: 'pie',
+                radius: [50, 200],
+                center: ['50%', '50%'],
+                roseType: 'area',
+                itemStyle: {
+                    borderRadius: 8
+                },
+                data: userlist_data
+            }
+        ]
+    };
+
+    if (option && typeof option === 'object') {
+        myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+
+</script>
+</head>
+</body>
+</html>
